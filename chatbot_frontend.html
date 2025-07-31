@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UCLA Instructor Chatbot</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f6f6f6; margin: 0; padding: 0; }
+    .chat-container { max-width: 600px; margin: 50px auto; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .chat-header { background: #2774AE; color: #fff; padding: 15px; font-size: 18px; font-weight: bold; }
+    .chat-body { padding: 20px; max-height: 400px; overflow-y: auto; }
+    .message { margin-bottom: 15px; }
+    .user { text-align: right; }
+    .user .bubble { background: #E6F0FA; }
+    .bot .bubble { background: #f1f1f1; }
+    .bubble { display: inline-block; padding: 10px 15px; border-radius: 10px; max-width: 80%; }
+    .chat-input { display: flex; border-top: 1px solid #ddd; }
+    textarea { flex: 1; padding: 10px; border: none; outline: none; resize: none; }
+    button { background: #2774AE; color: #fff; border: none; padding: 10px 15px; cursor: pointer; }
+    button:hover { background: #14568C; }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-header">🐻 UCLA TLC Instructor Chatbot</div>
+    <div class="chat-body" id="chat-body">
+      <div class="message bot"><div class="bubble">Hello! Ask me about UCLA TLC's teaching resources!! </div></div>
+    </div>
+    <div class="chat-input">
+      <textarea id="userInput" placeholder="Type your question..." rows="2"
+          onkeydown="handleKey(event)"></textarea>
+      <button onclick="sendMessage()">Send</button>
+
+    </div>
+  </div>
+
+  <script>
+    function handleKey(e) {
+  if (e.key === "Enter" && !e.shiftKey) {
+    e.preventDefault();  // Prevents a new line
+    sendMessage();       // Sends the message
+  }}
+    async function sendMessage() {
+      const input = document.getElementById("userInput");
+      const text = input.value.trim();
+      if (text === "") return;
+
+      const chatBody = document.getElementById("chat-body");
+
+      // User message
+      const userMsg = document.createElement("div");
+      userMsg.className = "message user";
+      userMsg.innerHTML = `<div class="bubble">${text}</div>`;
+      chatBody.appendChild(userMsg);
+
+      // Call Flask backend
+      const response = await fetch("http://127.0.0.1:5001/ask", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question: text })
+      });
+
+      const data = await response.json();
+
+      // Bot response
+      const botMsg = document.createElement("div");
+      botMsg.className = "message bot";
+      botMsg.innerHTML = `<div class="bubble">${data.answer}</div>`;
+      chatBody.appendChild(botMsg);
+
+      chatBody.scrollTop = chatBody.scrollHeight;
+      input.value = "";
+    }
+  </script>
+</body>
+</html>
