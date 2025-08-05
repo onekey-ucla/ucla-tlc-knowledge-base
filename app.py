@@ -146,7 +146,7 @@ st.markdown("""
         border: 1px solid #E0E0E0;
         border-radius: 6px;
         padding: 1.5rem;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1rem;
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
     
@@ -166,7 +166,7 @@ st.markdown("""
         padding: 0.8rem 1rem;
         border-radius: 4px;
         font-weight: 500;
-        margin: 0.3rem 0;
+        margin: 0.2rem 0;
         width: 100%;
         transition: all 0.2s ease;
         cursor: pointer;
@@ -181,7 +181,7 @@ st.markdown("""
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0.8rem 0;
+        padding: 0.6rem 0;
         border-bottom: 1px solid #E0E0E0;
     }
     
@@ -224,7 +224,7 @@ st.markdown("""
     }
     
     .ucla-tips-list li {
-        padding: 0.4rem 0;
+        padding: 0.3rem 0;
         color: var(--ucla-gray);
     }
     
@@ -358,7 +358,6 @@ st.markdown("""
 <div class="ucla-header">
     <div class="ucla-header-content">
         <div class="ucla-logo">
-            <div style="font-size: 2rem; margin-right: 1rem;">🏛️</div>
             <div>
                 <div class="ucla-logo-text">UCLA</div>
                 <div class="ucla-subtitle">Teaching & Learning Center</div>
@@ -377,33 +376,33 @@ st.markdown("""
 # ----------------------------
 with st.sidebar:
     st.markdown('<div class="ucla-sidebar-section">', unsafe_allow_html=True)
-    st.markdown('<div class="ucla-sidebar-title">🚀 Quick Access</div>', unsafe_allow_html=True)
+    st.markdown('<div class="ucla-sidebar-title">Quick Access</div>', unsafe_allow_html=True)
     
-    if st.button("🚨 Emergency Procedures", use_container_width=True, key="emergency"):
+    if st.button("Emergency Procedures", use_container_width=True, key="emergency"):
         st.session_state.quick_search = "emergency procedures"
         st.rerun()
     
-    if st.button("📋 FERPA Guidelines", use_container_width=True, key="ferpa"):
+    if st.button("FERPA Guidelines", use_container_width=True, key="ferpa"):
         st.session_state.quick_search = "FERPA guidelines"
         st.rerun()
     
-    if st.button("📊 SET Surveys", use_container_width=True, key="set"):
+    if st.button("SET Surveys", use_container_width=True, key="set"):
         st.session_state.quick_search = "SET survey interpretation"
         st.rerun()
     
-    if st.button("💰 Grant Opportunities", use_container_width=True, key="grants"):
+    if st.button("Grant Opportunities", use_container_width=True, key="grants"):
         st.session_state.quick_search = "educational innovation grants"
         st.rerun()
     
-    if st.button("🎓 Student Support", use_container_width=True, key="student"):
+    if st.button("Student Support", use_container_width=True, key="student"):
         st.session_state.quick_search = "student mental health support"
         st.rerun()
     
-    if st.button("🏫 Teaching Resources", use_container_width=True, key="resources"):
+    if st.button("Teaching Resources", use_container_width=True, key="resources"):
         st.session_state.quick_search = "UCLA Teaching and Learning Center"
         st.rerun()
     
-    if st.button("📈 Response Rates", use_container_width=True, key="rates"):
+    if st.button("Response Rates", use_container_width=True, key="rates"):
         st.session_state.quick_search = "SET survey response rates"
         st.rerun()
     
@@ -411,7 +410,7 @@ with st.sidebar:
     
     # Statistics Section
     st.markdown('<div class="ucla-sidebar-section">', unsafe_allow_html=True)
-    st.markdown('<div class="ucla-sidebar-title">📊 Knowledge Base Stats</div>', unsafe_allow_html=True)
+    st.markdown('<div class="ucla-sidebar-title">Knowledge Base Stats</div>', unsafe_allow_html=True)
     
     total_qa = len(corpus)
     categories_count = len(categorized_corpus)
@@ -435,7 +434,7 @@ with st.sidebar:
     
     # Tips Section
     st.markdown('<div class="ucla-tips-section">', unsafe_allow_html=True)
-    st.markdown('<div class="ucla-tips-title">💡 Search Tips</div>', unsafe_allow_html=True)
+    st.markdown('<div class="ucla-tips-title">Search Tips</div>', unsafe_allow_html=True)
     st.markdown('''
     <ul class="ucla-tips-list">
         <li>Use specific keywords for better results</li>
@@ -452,7 +451,7 @@ with st.sidebar:
 # ----------------------------
 # Search Section
 st.markdown('<div class="ucla-search-section">', unsafe_allow_html=True)
-st.markdown('<div class="ucla-search-title">🔍 Search Knowledge Base</div>', unsafe_allow_html=True)
+st.markdown('<div class="ucla-search-title">Search Knowledge Base</div>', unsafe_allow_html=True)
 
 # Search input
 query = st.text_input(
@@ -470,7 +469,7 @@ if search_button and query.strip():
         results = enhanced_search(query, model, corpus, index, k=5)
     
     if results:
-        st.markdown(f"### 📋 Search Results ({len(results)} found)")
+        st.markdown(f"### Search Results ({len(results)} found)")
         
         for result in results:
             st.markdown(f'''
@@ -489,7 +488,7 @@ if search_button and query.strip():
 # Show category content if selected
 elif st.session_state.get("selected_category", "All Categories") != "All Categories":
     selected_category = st.session_state.get("selected_category")
-    st.markdown(f"### 📚 {selected_category}")
+    st.markdown(f"### {selected_category}")
     
     for item in categorized_corpus.get(selected_category, []):
         st.markdown(f'''
@@ -502,7 +501,7 @@ elif st.session_state.get("selected_category", "All Categories") != "All Categor
 
 # Category Browser Section
 st.markdown('<div class="ucla-category-section">', unsafe_allow_html=True)
-st.markdown('<div class="ucla-category-title">📚 Browse by Category</div>', unsafe_allow_html=True)
+st.markdown('<div class="ucla-category-title">Browse by Category</div>', unsafe_allow_html=True)
 
 # Create category selection
 category_options = ["All Categories"] + sorted(categorized_corpus.keys())
