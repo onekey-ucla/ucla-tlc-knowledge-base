@@ -386,8 +386,6 @@ st.markdown("""
 # ----------------------------
 # Main Content
 # ----------------------------
-st.markdown('<div class="ucla-container">', unsafe_allow_html=True)
-
 # Create two columns for layout
 col1, col2 = st.columns([2, 1])
 
@@ -530,8 +528,6 @@ selected_category = st.selectbox(
 if selected_category != "All Categories":
     st.session_state.selected_category = selected_category
     st.rerun()
-
-st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('</div>', unsafe_allow_html=True)
 
