@@ -73,13 +73,6 @@ st.markdown("""
         margin-top: 0.5rem;
     }
     
-    /* Main Container */
-    .ucla-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 2rem;
-    }
-    
     /* UCLA Search Section */
     .ucla-search-section {
         background: var(--ucla-white);
@@ -286,10 +279,6 @@ st.markdown("""
         .ucla-logo-text {
             font-size: 1.5rem;
         }
-        
-        .ucla-container {
-            padding: 0 1rem;
-        }
     }
 </style>
 """, unsafe_allow_html=True)
@@ -384,64 +373,9 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ----------------------------
-# Main Content
+# Sidebar with organized sections
 # ----------------------------
-# Create two columns for layout
-col1, col2 = st.columns([2, 1])
-
-with col1:
-    # Search Section
-    st.markdown('<div class="ucla-search-section">', unsafe_allow_html=True)
-    st.markdown('<div class="ucla-search-title">🔍 Search Knowledge Base</div>', unsafe_allow_html=True)
-    
-    # Search input
-    query = st.text_input(
-        "Enter your question:",
-        value=st.session_state.get("quick_search", ""),
-        placeholder="e.g., How do I interpret SET survey results?"
-    )
-    
-    search_button = st.button("Search", type="primary", use_container_width=True)
-    st.markdown('</div>', unsafe_allow_html=True)
-    
-    # Search results
-    if search_button and query.strip():
-        with st.spinner("Searching our knowledge base..."):
-            results = enhanced_search(query, model, corpus, index, k=5)
-        
-        if results:
-            st.markdown(f"### 📋 Search Results ({len(results)} found)")
-            
-            for result in results:
-                st.markdown(f'''
-                <div class="ucla-result-card">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                        <span class="ucla-category-badge">{result["category"]}</span>
-                        <span class="ucla-relevance-score">Relevance: {result["relevance_score"]:.2f}</span>
-                    </div>
-                    <div class="ucla-question-title">{result["question"]}</div>
-                    <div class="ucla-answer-text">{result["answer"]}</div>
-                </div>
-                ''', unsafe_allow_html=True)
-        else:
-            st.warning("No relevant results found. Try rephrasing your question or browse by category.")
-    
-    # Show category content if selected
-    elif st.session_state.get("selected_category", "All Categories") != "All Categories":
-        selected_category = st.session_state.get("selected_category")
-        st.markdown(f"### 📚 {selected_category}")
-        
-        for item in categorized_corpus.get(selected_category, []):
-            st.markdown(f'''
-            <div class="ucla-result-card">
-                <span class="ucla-category-badge">{item["category"]}</span>
-                <div class="ucla-question-title">{item["question"]}</div>
-                <div class="ucla-answer-text">{item["answer"]}</div>
-            </div>
-            ''', unsafe_allow_html=True)
-
-with col2:
-    # Quick Access Section
+with st.sidebar:
     st.markdown('<div class="ucla-sidebar-section">', unsafe_allow_html=True)
     st.markdown('<div class="ucla-sidebar-title">🚀 Quick Access</div>', unsafe_allow_html=True)
     
@@ -512,6 +446,59 @@ with col2:
     </ul>
     ''', unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
+
+# ----------------------------
+# Main Content Area
+# ----------------------------
+# Search Section
+st.markdown('<div class="ucla-search-section">', unsafe_allow_html=True)
+st.markdown('<div class="ucla-search-title">🔍 Search Knowledge Base</div>', unsafe_allow_html=True)
+
+# Search input
+query = st.text_input(
+    "Enter your question:",
+    value=st.session_state.get("quick_search", ""),
+    placeholder="e.g., How do I interpret SET survey results?"
+)
+
+search_button = st.button("Search", type="primary", use_container_width=True)
+st.markdown('</div>', unsafe_allow_html=True)
+
+# Search results
+if search_button and query.strip():
+    with st.spinner("Searching our knowledge base..."):
+        results = enhanced_search(query, model, corpus, index, k=5)
+    
+    if results:
+        st.markdown(f"### 📋 Search Results ({len(results)} found)")
+        
+        for result in results:
+            st.markdown(f'''
+            <div class="ucla-result-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <span class="ucla-category-badge">{result["category"]}</span>
+                    <span class="ucla-relevance-score">Relevance: {result["relevance_score"]:.2f}</span>
+                </div>
+                <div class="ucla-question-title">{result["question"]}</div>
+                <div class="ucla-answer-text">{result["answer"]}</div>
+            </div>
+            ''', unsafe_allow_html=True)
+    else:
+        st.warning("No relevant results found. Try rephrasing your question or browse by category.")
+
+# Show category content if selected
+elif st.session_state.get("selected_category", "All Categories") != "All Categories":
+    selected_category = st.session_state.get("selected_category")
+    st.markdown(f"### 📚 {selected_category}")
+    
+    for item in categorized_corpus.get(selected_category, []):
+        st.markdown(f'''
+        <div class="ucla-result-card">
+            <span class="ucla-category-badge">{item["category"]}</span>
+            <div class="ucla-question-title">{item["question"]}</div>
+            <div class="ucla-answer-text">{item["answer"]}</div>
+        </div>
+        ''', unsafe_allow_html=True)
 
 # Category Browser Section
 st.markdown('<div class="ucla-category-section">', unsafe_allow_html=True)
