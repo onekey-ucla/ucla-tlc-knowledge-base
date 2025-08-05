@@ -147,11 +147,20 @@ with st.sidebar:
     if st.button("📋 FERPA Guidelines", use_container_width=True):
         st.session_state.quick_search = "FERPA guidelines"
     
+    if st.button("📊 SET Surveys", use_container_width=True):
+        st.session_state.quick_search = "SET survey interpretation"
+    
     if st.button("💰 Grant Opportunities", use_container_width=True):
         st.session_state.quick_search = "educational innovation grants"
     
     if st.button("🎓 Student Support", use_container_width=True):
         st.session_state.quick_search = "student mental health support"
+    
+    if st.button("🏫 Teaching Resources", use_container_width=True):
+        st.session_state.quick_search = "UCLA Teaching and Learning Center"
+    
+    if st.button("📈 Response Rates", use_container_width=True):
+        st.session_state.quick_search = "SET survey response rates"
 
 # Main content area
 col1, col2 = st.columns([2, 1])
@@ -164,7 +173,7 @@ with col1:
     query = st.text_input(
         "Enter your question:",
         value=st.session_state.get("quick_search", ""),
-        placeholder="e.g., How do I handle a student crisis situation?"
+        placeholder="e.g., How do I interpret SET survey results?"
     )
     
     search_button = st.button("Search", type="primary")
@@ -218,7 +227,7 @@ with col2:
     st.metric("Total Q&A Pairs", total_qa)
     st.metric("Categories", categories_count)
     
-    # Category breakdown
+    # Category breakdown with updated counts
     st.markdown("**Category Breakdown:**")
     for category, items in categorized_corpus.items():
         st.markdown(f"- {category}: {len(items)} items")
@@ -230,6 +239,7 @@ with col2:
     - Check the sidebar for quick access to urgent topics
     - Browse by category to explore related content
     - Results are ranked by relevance to your query
+    - Try asking about SET surveys, teaching resources, or compliance
     """)
 
 # Footer
