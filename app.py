@@ -171,7 +171,7 @@ st.markdown("""
         width: 100%;
         transition: all 0.2s ease;
         cursor: pointer;
-        font-size: 0.85rem;
+        font-size: 0.75rem;
     }
     
     .ucla-quick-btn:hover {
@@ -415,8 +415,7 @@ with st.sidebar:
     st.markdown("---")
     
     # Statistics Section
-    st.markdown('<div class="ucla-sidebar-section">', unsafe_allow_html=True)
-    st.markdown('<div class="ucla-sidebar-title">Knowledge Base Stats</div>', unsafe_allow_html=True)
+    st.markdown("**Knowledge Base Stats**")
     
     total_qa = len(corpus)
     categories_count = len(categorized_corpus)
@@ -436,11 +435,10 @@ with st.sidebar:
     for category, items in sorted(categorized_corpus.items(), key=lambda x: len(x[1]), reverse=True):
         st.markdown(f"• {category}: {len(items)} items")
     
-    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown("---")
     
     # Tips Section
-    st.markdown('<div class="ucla-tips-section">', unsafe_allow_html=True)
-    st.markdown('<div class="ucla-tips-title">Search Tips</div>', unsafe_allow_html=True)
+    st.markdown("**Search Tips**")
     st.markdown('''
     <ul class="ucla-tips-list">
         <li>Use specific keywords for better results</li>
@@ -450,14 +448,12 @@ with st.sidebar:
         <li>Check quick access for urgent topics</li>
     </ul>
     ''', unsafe_allow_html=True)
-    st.markdown('</div>', unsafe_allow_html=True)
 
 # ----------------------------
 # Main Content Area
 # ----------------------------
 # Search Section
-st.markdown('<div class="ucla-search-section">', unsafe_allow_html=True)
-st.markdown('<div class="ucla-search-title">Search Knowledge Base</div>', unsafe_allow_html=True)
+st.markdown("**Search Knowledge Base**")
 
 # Search input
 query = st.text_input(
@@ -467,7 +463,6 @@ query = st.text_input(
 )
 
 search_button = st.button("Search", type="primary", use_container_width=True)
-st.markdown('</div>', unsafe_allow_html=True)
 
 # Search results
 if search_button and query.strip():
@@ -506,8 +501,7 @@ elif st.session_state.get("selected_category", "All Categories") != "All Categor
         ''', unsafe_allow_html=True)
 
 # Category Browser Section
-st.markdown('<div class="ucla-category-section">', unsafe_allow_html=True)
-st.markdown('<div class="ucla-category-title">Browse by Category</div>', unsafe_allow_html=True)
+st.markdown("**Browse by Category**")
 
 # Create category selection
 category_options = ["All Categories"] + sorted(categorized_corpus.keys())
@@ -520,8 +514,6 @@ selected_category = st.selectbox(
 if selected_category != "All Categories":
     st.session_state.selected_category = selected_category
     st.rerun()
-
-st.markdown('</div>', unsafe_allow_html=True)
 
 # UCLA Institutional Footer
 st.markdown("""
