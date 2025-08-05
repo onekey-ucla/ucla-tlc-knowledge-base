@@ -16,17 +16,13 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# UCLA Institutional Branding CSS
+# UCLA Brand Colors Only
 st.markdown("""
 <style>
-    /* UCLA Brand Colors */
+    /* UCLA Brand Colors Only */
     :root {
         --ucla-blue: #2774AE;
         --ucla-gold: #FFD100;
-        --ucla-dark-blue: #005587;
-        --ucla-light-blue: #8BB8E8;
-        --ucla-gray: #4A4A4A;
-        --ucla-light-gray: #F5F5F5;
         --ucla-white: #FFFFFF;
     }
     
@@ -40,219 +36,165 @@ st.markdown("""
     /* UCLA Header */
     .ucla-header {
         background: var(--ucla-blue);
-        padding: 1rem 0;
-        margin: -1rem -1rem 1rem -1rem;
-        box-shadow: 0 2px 8px rgba(39, 116, 174, 0.3);
+        padding: 1.5rem 0;
+        margin: -1rem -1rem 2rem -1rem;
+        box-shadow: 0 4px 12px rgba(39, 116, 174, 0.3);
     }
     
     .ucla-header-content {
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 2rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    
-    .ucla-logo {
-        display: flex;
-        align-items: center;
+        text-align: center;
         color: white;
     }
     
-    .ucla-logo-text {
-        font-size: 1.5rem;
+    .ucla-header-title {
+        font-size: 2rem;
         font-weight: 700;
-        margin-left: 1rem;
+        margin-bottom: 0.5rem;
     }
     
-    .ucla-subtitle {
-        color: var(--ucla-light-blue);
-        font-size: 0.9rem;
+    .ucla-header-subtitle {
+        font-size: 1.1rem;
+        opacity: 0.9;
         font-weight: 300;
-        margin-top: 0.3rem;
     }
     
-    /* UCLA Search Section */
-    .ucla-search-section {
+    /* Main Container */
+    .main-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
+    
+    /* Card Layout */
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .ucla-card {
         background: var(--ucla-white);
-        border: 2px solid var(--ucla-light-blue);
-        border-radius: 6px;
+        border: 2px solid var(--ucla-blue);
+        border-radius: 8px;
         padding: 1.5rem;
-        margin-bottom: 1.5rem;
-        box-shadow: 0 2px 8px rgba(39, 116, 174, 0.1);
+        box-shadow: 0 4px 12px rgba(39, 116, 174, 0.15);
+        transition: all 0.3s ease;
     }
     
-    .ucla-search-title {
+    .ucla-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(39, 116, 174, 0.25);
+    }
+    
+    .card-title {
         color: var(--ucla-blue);
         font-size: 1.2rem;
         font-weight: 600;
-        margin-bottom: 0.8rem;
+        margin-bottom: 1rem;
+        border-bottom: 2px solid var(--ucla-gold);
+        padding-bottom: 0.5rem;
     }
     
-    /* UCLA Result Cards */
-    .ucla-result-card {
+    .card-content {
+        color: #333;
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    
+    /* Search Section */
+    .search-section {
         background: var(--ucla-white);
-        border: 1px solid #E0E0E0;
-        border-radius: 4px;
+        border: 2px solid var(--ucla-blue);
+        border-radius: 8px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 12px rgba(39, 116, 174, 0.15);
+    }
+    
+    .search-title {
+        color: var(--ucla-blue);
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+    
+    /* UCLA Gold Search Button */
+    .stButton > button {
+        background-color: var(--ucla-gold) !important;
+        color: #333 !important;
+        border: none !important;
+        font-weight: 600 !important;
+    }
+    
+    .stButton > button:hover {
+        background-color: #E6C200 !important;
+        transform: translateY(-1px) !important;
+    }
+    
+    /* Result Cards */
+    .result-card {
+        background: var(--ucla-white);
+        border: 1px solid var(--ucla-blue);
+        border-radius: 6px;
         padding: 1rem;
         margin: 0.5rem 0;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        transition: all 0.2s ease;
+        box-shadow: 0 2px 6px rgba(39, 116, 174, 0.1);
     }
     
-    .ucla-result-card:hover {
-        border-color: var(--ucla-blue);
-        box-shadow: 0 2px 6px rgba(39, 116, 174, 0.15);
-    }
-    
-    .ucla-category-badge {
+    .category-badge {
         background: var(--ucla-blue);
         color: white;
-        padding: 0.2rem 0.6rem;
-        border-radius: 3px;
-        font-size: 0.7rem;
+        padding: 0.3rem 0.8rem;
+        border-radius: 4px;
+        font-size: 0.8rem;
         font-weight: 600;
         display: inline-block;
         margin-bottom: 0.5rem;
     }
     
-    .ucla-question-title {
-        color: var(--ucla-dark-blue);
+    .question-title {
+        color: var(--ucla-blue);
         font-size: 1rem;
         font-weight: 600;
         margin-bottom: 0.5rem;
-        line-height: 1.3;
     }
     
-    .ucla-answer-text {
-        color: var(--ucla-gray);
+    .answer-text {
+        color: #333;
         line-height: 1.4;
-        margin: 0;
         font-size: 0.9rem;
     }
     
-    .ucla-relevance-score {
-        background: var(--ucla-light-gray);
-        color: var(--ucla-gray);
-        padding: 0.2rem 0.5rem;
-        border-radius: 3px;
-        font-size: 0.7rem;
-        font-weight: 500;
+    /* Consistent Font Sizes */
+    .category-item {
+        font-size: 0.9rem;
+        margin: 0.3rem 0;
+        color: #333;
     }
     
-    /* UCLA Sidebar */
-    .ucla-sidebar-section {
-        background: var(--ucla-white);
-        border: 1px solid #E0E0E0;
-        border-radius: 4px;
-        padding: 1rem;
-        margin-bottom: 0.8rem;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
-    
-    .ucla-sidebar-title {
-        color: var(--ucla-blue);
-        font-size: 1rem;
-        font-weight: 600;
-        margin-bottom: 0.8rem;
-        border-bottom: 1px solid var(--ucla-gold);
-        padding-bottom: 0.3rem;
-    }
-    
-    .ucla-quick-btn {
-        background: var(--ucla-blue);
-        color: white;
-        border: none;
-        padding: 0.6rem 0.8rem;
-        border-radius: 3px;
-        font-weight: 500;
-        margin: 0.1rem 0;
-        width: 100%;
-        transition: all 0.2s ease;
-        cursor: pointer;
-        font-size: 0.75rem;
-    }
-    
-    .ucla-quick-btn:hover {
-        background: var(--ucla-dark-blue);
-    }
-    
-    /* UCLA Stats */
-    .ucla-stat-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0.4rem 0;
-        border-bottom: 1px solid #E0E0E0;
-    }
-    
-    .ucla-stat-item:last-child {
-        border-bottom: none;
-    }
-    
-    .ucla-stat-label {
-        font-weight: 500;
-        color: var(--ucla-gray);
-        font-size: 0.85rem;
-    }
-    
-    .ucla-stat-value {
-        font-weight: 600;
-        color: var(--ucla-blue);
-        background: var(--ucla-light-gray);
-        padding: 0.2rem 0.6rem;
-        border-radius: 3px;
-        font-size: 0.8rem;
-    }
-    
-    /* UCLA Tips Section */
-    .ucla-tips-section {
-        background: var(--ucla-light-gray);
-        border-left: 3px solid var(--ucla-gold);
-        padding: 1rem;
-        border-radius: 3px;
-    }
-    
-    .ucla-tips-title {
-        color: var(--ucla-blue);
-        font-size: 1rem;
-        font-weight: 600;
-        margin-bottom: 0.8rem;
-    }
-    
-    .ucla-tips-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-    
-    .ucla-tips-list li {
-        padding: 0.2rem 0;
-        color: var(--ucla-gray);
-        font-size: 0.8rem;
-    }
-    
-    .ucla-tips-list li:before {
-        content: "•";
-        color: var(--ucla-blue);
-        font-weight: bold;
-        margin-right: 0.4rem;
+    .tips-item {
+        font-size: 0.9rem;
+        margin: 0.3rem 0;
+        color: #333;
     }
     
     /* UCLA Footer */
     .ucla-footer {
-        background: var(--ucla-dark-blue);
+        background: var(--ucla-blue);
         color: white;
         text-align: center;
-        padding: 1rem;
-        margin: 1.5rem -1rem -1rem -1rem;
-        border-radius: 4px 4px 0 0;
-        font-size: 0.8rem;
+        padding: 1.5rem;
+        margin: 2rem -1rem -1rem -1rem;
+        border-radius: 8px 8px 0 0;
     }
     
     .ucla-footer a {
-        color: var(--ucla-light-blue);
+        color: var(--ucla-gold);
         text-decoration: none;
         font-weight: 500;
     }
@@ -261,29 +203,14 @@ st.markdown("""
         text-decoration: underline;
     }
     
-    /* UCLA Category Browser */
-    .ucla-category-section {
-        background: var(--ucla-white);
-        border: 1px solid #E0E0E0;
-        border-radius: 4px;
-        padding: 1rem;
-        margin-top: 1.5rem;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
-    
-    .ucla-category-title {
-        color: var(--ucla-blue);
-        font-size: 1.1rem;
-        font-weight: 600;
-        margin-bottom: 0.8rem;
-        border-bottom: 1px solid var(--ucla-gold);
-        padding-bottom: 0.3rem;
-    }
-    
     /* Responsive Design */
     @media (max-width: 768px) {
-        .ucla-logo-text {
-            font-size: 1.3rem;
+        .card-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .ucla-header-title {
+            font-size: 1.5rem;
         }
     }
 </style>
@@ -358,65 +285,27 @@ def enhanced_search(query, model, corpus, index, k=5):
     return results
 
 # ----------------------------
-# UCLA Institutional Header
+# UCLA Header
 # ----------------------------
 st.markdown("""
 <div class="ucla-header">
     <div class="ucla-header-content">
-        <div class="ucla-logo">
-            <div>
-                <div class="ucla-logo-text">UCLA</div>
-                <div class="ucla-subtitle">Teaching & Learning Center</div>
-            </div>
-        </div>
-        <div style="color: white; text-align: right;">
-            <div style="font-size: 1rem; font-weight: 600;">Knowledge Base</div>
-            <div style="font-size: 0.8rem; opacity: 0.8;">Resource Center</div>
-        </div>
+        <div class="ucla-header-title">UCLA Teaching & Learning Center</div>
+        <div class="ucla-header-subtitle">Knowledge Base & Resource Center</div>
     </div>
 </div>
 """, unsafe_allow_html=True)
 
 # ----------------------------
-# Sidebar with organized sections
+# Main Container
 # ----------------------------
-with st.sidebar:
-    # Quick Access Section (no box)
-    st.markdown("**Quick Access**")
-    
-    if st.button("Emergency Procedures", use_container_width=True, key="emergency"):
-        st.session_state.quick_search = "emergency procedures"
-        st.rerun()
-    
-    if st.button("FERPA Guidelines", use_container_width=True, key="ferpa"):
-        st.session_state.quick_search = "FERPA guidelines"
-        st.rerun()
-    
-    if st.button("SET Surveys", use_container_width=True, key="set"):
-        st.session_state.quick_search = "SET survey interpretation"
-        st.rerun()
-    
-    if st.button("Grant Opportunities", use_container_width=True, key="grants"):
-        st.session_state.quick_search = "educational innovation grants"
-        st.rerun()
-    
-    if st.button("Student Support", use_container_width=True, key="student"):
-        st.session_state.quick_search = "student mental health support"
-        st.rerun()
-    
-    if st.button("Teaching Resources", use_container_width=True, key="resources"):
-        st.session_state.quick_search = "UCLA Teaching and Learning Center"
-        st.rerun()
-    
-    if st.button("Response Rates", use_container_width=True, key="rates"):
-        st.session_state.quick_search = "SET survey response rates"
-        st.rerun()
+st.markdown('<div class="main-container">', unsafe_allow_html=True)
 
 # ----------------------------
-# Main Content Area
-# ----------------------------
 # Search Section
-st.markdown("**Search Knowledge Base**")
+# ----------------------------
+st.markdown('<div class="search-section">', unsafe_allow_html=True)
+st.markdown('<div class="search-title">Search Knowledge Base</div>', unsafe_allow_html=True)
 
 # Search input
 query = st.text_input(
@@ -425,7 +314,7 @@ query = st.text_input(
     placeholder="e.g., How do I interpret SET survey results?"
 )
 
-search_button = st.button("Search", type="primary", use_container_width=True)
+search_button = st.button("Search", use_container_width=True)
 
 # Search results
 if search_button and query.strip():
@@ -437,85 +326,139 @@ if search_button and query.strip():
         
         for result in results:
             st.markdown(f'''
-            <div class="ucla-result-card">
+            <div class="result-card">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
-                    <span class="ucla-category-badge">{result["category"]}</span>
-                    <span class="ucla-relevance-score">Relevance: {result["relevance_score"]:.2f}</span>
+                    <span class="category-badge">{result["category"]}</span>
+                    <small style="color: #666;">Relevance: {result["relevance_score"]:.2f}</small>
                 </div>
-                <div class="ucla-question-title">{result["question"]}</div>
-                <div class="ucla-answer-text">{result["answer"]}</div>
+                <div class="question-title">{result["question"]}</div>
+                <div class="answer-text">{result["answer"]}</div>
             </div>
             ''', unsafe_allow_html=True)
     else:
         st.warning("No relevant results found. Try rephrasing your question or browse by category.")
 
-# Show category content if selected
-elif st.session_state.get("selected_category", "All Categories") != "All Categories":
-    selected_category = st.session_state.get("selected_category")
-    st.markdown(f"### {selected_category}")
-    
-    for item in categorized_corpus.get(selected_category, []):
-        st.markdown(f'''
-        <div class="ucla-result-card">
-            <span class="ucla-category-badge">{item["category"]}</span>
-            <div class="ucla-question-title">{item["question"]}</div>
-            <div class="ucla-answer-text">{item["answer"]}</div>
+st.markdown('</div>', unsafe_allow_html=True)
+
+# ----------------------------
+# 3x2 Card Layout
+# ----------------------------
+st.markdown('<div class="card-grid">', unsafe_allow_html=True)
+
+# Card 1: Quick Access
+st.markdown('''
+<div class="ucla-card">
+    <div class="card-title">Quick Access</div>
+    <div class="card-content">
+        <div style="margin-bottom: 0.5rem;">
+            <button onclick="window.location.href='?quick_search=emergency+procedures'" style="background: var(--ucla-blue); color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; margin: 0.2rem; font-size: 0.8rem; cursor: pointer;">Emergency Procedures</button>
         </div>
-        ''', unsafe_allow_html=True)
+        <div style="margin-bottom: 0.5rem;">
+            <button onclick="window.location.href='?quick_search=FERPA+guidelines'" style="background: var(--ucla-blue); color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; margin: 0.2rem; font-size: 0.8rem; cursor: pointer;">FERPA Guidelines</button>
+        </div>
+        <div style="margin-bottom: 0.5rem;">
+            <button onclick="window.location.href='?quick_search=SET+survey+interpretation'" style="background: var(--ucla-blue); color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; margin: 0.2rem; font-size: 0.8rem; cursor: pointer;">SET Surveys</button>
+        </div>
+        <div style="margin-bottom: 0.5rem;">
+            <button onclick="window.location.href='?quick_search=educational+innovation+grants'" style="background: var(--ucla-blue); color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; margin: 0.2rem; font-size: 0.8rem; cursor: pointer;">Grant Opportunities</button>
+        </div>
+    </div>
+</div>
+''', unsafe_allow_html=True)
 
-# Add some spacing between sections
-st.markdown("")
-st.markdown("")
+# Card 2: Browse by Category
+st.markdown('''
+<div class="ucla-card">
+    <div class="card-title">Browse by Category</div>
+    <div class="card-content">
+        <div class="category-item">• Emergency & Safety: 4 items</div>
+        <div class="category-item">• Legal & Compliance: 7 items</div>
+        <div class="category-item">• Student Support: 5 items</div>
+        <div class="category-item">• Teaching Resources: 9 items</div>
+        <div class="category-item">• Assessment: 35 items</div>
+        <div class="category-item">• Teaching Strategies: 5 items</div>
+    </div>
+</div>
+''', unsafe_allow_html=True)
 
-# Category Browser Section with Stats and Tips
-st.markdown("**Browse by Category**")
-
-# Create category selection
-category_options = ["All Categories"] + sorted(categorized_corpus.keys())
-selected_category = st.selectbox(
-    "Choose a category to browse:",
-    category_options,
-    key="category_selector"
-)
-
-if selected_category != "All Categories":
-    st.session_state.selected_category = selected_category
-    st.rerun()
-
-# Knowledge Base Stats (moved under Browse by Category)
-st.markdown("**Knowledge Base Stats**")
-
+# Card 3: Knowledge Base Stats
 total_qa = len(corpus)
 categories_count = len(categorized_corpus)
 
 st.markdown(f'''
-<div class="ucla-stat-item">
-    <span class="ucla-stat-label">Total Q&A Pairs</span>
-    <span class="ucla-stat-value">{total_qa}</span>
-</div>
-<div class="ucla-stat-item">
-    <span class="ucla-stat-label">Categories</span>
-    <span class="ucla-stat-value">{categories_count}</span>
+<div class="ucla-card">
+    <div class="card-title">Knowledge Base Stats</div>
+    <div class="card-content">
+        <div style="margin-bottom: 1rem;">
+            <strong>Total Q&A Pairs:</strong> {total_qa}
+        </div>
+        <div style="margin-bottom: 1rem;">
+            <strong>Categories:</strong> {categories_count}
+        </div>
+        <div style="font-size: 0.8rem; color: #666;">
+            Most comprehensive UCLA teaching resource database
+        </div>
+    </div>
 </div>
 ''', unsafe_allow_html=True)
 
-st.markdown("**Category Breakdown:**")
-for category, items in sorted(categorized_corpus.items(), key=lambda x: len(x[1]), reverse=True):
-    st.markdown(f"• {category}: {len(items)} items")
-
-# Search Tips (moved under Browse by Category)
-st.markdown("**Search Tips**")
+# Card 4: Search Tips
 st.markdown('''
-<ul class="ucla-tips-list">
-    <li>Use specific keywords for better results</li>
-    <li>Try asking about SET surveys or teaching resources</li>
-    <li>Browse by category to explore related content</li>
-    <li>Results are ranked by relevance to your query</li>
-    <li>Check quick access for urgent topics</li>
-</ul>
+<div class="ucla-card">
+    <div class="card-title">Search Tips</div>
+    <div class="card-content">
+        <div class="tips-item">• Use specific keywords for better results</div>
+        <div class="tips-item">• Try asking about SET surveys or teaching resources</div>
+        <div class="tips-item">• Browse by category to explore related content</div>
+        <div class="tips-item">• Results are ranked by relevance to your query</div>
+        <div class="tips-item">• Check quick access for urgent topics</div>
+    </div>
+</div>
 ''', unsafe_allow_html=True)
 
-# UCLA Institutional Footer
+# Card 5: Popular Topics
+st.markdown('''
+<div class="ucla-card">
+    <div class="card-title">Popular Topics</div>
+    <div class="card-content">
+        <div class="category-item">• SET Survey Interpretation</div>
+        <div class="category-item">• FERPA Compliance</div>
+        <div class="category-item">• Emergency Procedures</div>
+        <div class="category-item">• Student Mental Health</div>
+        <div class="category-item">• Teaching Resources</div>
+        <div class="category-item">• Grant Opportunities</div>
+    </div>
+</div>
+''', unsafe_allow_html=True)
+
+# Card 6: Contact & Support
+st.markdown('''
+<div class="ucla-card">
+    <div class="card-title">Contact & Support</div>
+    <div class="card-content">
+        <div style="margin-bottom: 0.5rem;">
+            <strong>Email:</strong> tlc@teaching.ucla.edu
+        </div>
+        <div style="margin-bottom: 0.5rem;">
+            <strong>Website:</strong> teaching.ucla.edu
+        </div>
+        <div style="margin-bottom: 0.5rem;">
+            <strong>Hours:</strong> Mon-Fri 9AM-5PM
+        </div>
+        <div style="font-size: 0.8rem; color: #666;">
+            Get personalized support for your teaching needs
+        </div>
+    </div>
+</div>
+''', unsafe_allow_html=True)
+
+st.markdown('</div>', unsafe_allow_html=True)
+
+st.markdown('</div>', unsafe_allow_html=True)
+
+# ----------------------------
+# UCLA Footer
+# ----------------------------
 st.markdown("""
 <div class="ucla-footer">
     <strong>UCLA Teaching & Learning Center Knowledge Base</strong><br>
