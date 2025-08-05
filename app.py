@@ -411,43 +411,6 @@ with st.sidebar:
     if st.button("Response Rates", use_container_width=True, key="rates"):
         st.session_state.quick_search = "SET survey response rates"
         st.rerun()
-    
-    st.markdown("---")
-    
-    # Statistics Section
-    st.markdown("**Knowledge Base Stats**")
-    
-    total_qa = len(corpus)
-    categories_count = len(categorized_corpus)
-    
-    st.markdown(f'''
-    <div class="ucla-stat-item">
-        <span class="ucla-stat-label">Total Q&A Pairs</span>
-        <span class="ucla-stat-value">{total_qa}</span>
-    </div>
-    <div class="ucla-stat-item">
-        <span class="ucla-stat-label">Categories</span>
-        <span class="ucla-stat-value">{categories_count}</span>
-    </div>
-    ''', unsafe_allow_html=True)
-    
-    st.markdown("**Category Breakdown:**")
-    for category, items in sorted(categorized_corpus.items(), key=lambda x: len(x[1]), reverse=True):
-        st.markdown(f"• {category}: {len(items)} items")
-    
-    st.markdown("---")
-    
-    # Tips Section
-    st.markdown("**Search Tips**")
-    st.markdown('''
-    <ul class="ucla-tips-list">
-        <li>Use specific keywords for better results</li>
-        <li>Try asking about SET surveys or teaching resources</li>
-        <li>Browse by category to explore related content</li>
-        <li>Results are ranked by relevance to your query</li>
-        <li>Check quick access for urgent topics</li>
-    </ul>
-    ''', unsafe_allow_html=True)
 
 # ----------------------------
 # Main Content Area
@@ -500,7 +463,11 @@ elif st.session_state.get("selected_category", "All Categories") != "All Categor
         </div>
         ''', unsafe_allow_html=True)
 
-# Category Browser Section
+# Add some spacing between sections
+st.markdown("")
+st.markdown("")
+
+# Category Browser Section with Stats and Tips
 st.markdown("**Browse by Category**")
 
 # Create category selection
@@ -514,6 +481,39 @@ selected_category = st.selectbox(
 if selected_category != "All Categories":
     st.session_state.selected_category = selected_category
     st.rerun()
+
+# Knowledge Base Stats (moved under Browse by Category)
+st.markdown("**Knowledge Base Stats**")
+
+total_qa = len(corpus)
+categories_count = len(categorized_corpus)
+
+st.markdown(f'''
+<div class="ucla-stat-item">
+    <span class="ucla-stat-label">Total Q&A Pairs</span>
+    <span class="ucla-stat-value">{total_qa}</span>
+</div>
+<div class="ucla-stat-item">
+    <span class="ucla-stat-label">Categories</span>
+    <span class="ucla-stat-value">{categories_count}</span>
+</div>
+''', unsafe_allow_html=True)
+
+st.markdown("**Category Breakdown:**")
+for category, items in sorted(categorized_corpus.items(), key=lambda x: len(x[1]), reverse=True):
+    st.markdown(f"• {category}: {len(items)} items")
+
+# Search Tips (moved under Browse by Category)
+st.markdown("**Search Tips**")
+st.markdown('''
+<ul class="ucla-tips-list">
+    <li>Use specific keywords for better results</li>
+    <li>Try asking about SET surveys or teaching resources</li>
+    <li>Browse by category to explore related content</li>
+    <li>Results are ranked by relevance to your query</li>
+    <li>Check quick access for urgent topics</li>
+</ul>
+''', unsafe_allow_html=True)
 
 # UCLA Institutional Footer
 st.markdown("""
