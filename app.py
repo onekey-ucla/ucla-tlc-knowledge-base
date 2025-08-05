@@ -40,8 +40,8 @@ st.markdown("""
     /* UCLA Header */
     .ucla-header {
         background: var(--ucla-blue);
-        padding: 1.5rem 0;
-        margin: -1rem -1rem 2rem -1rem;
+        padding: 1rem 0;
+        margin: -1rem -1rem 1rem -1rem;
         box-shadow: 0 2px 8px rgba(39, 116, 174, 0.3);
     }
     
@@ -61,82 +61,83 @@ st.markdown("""
     }
     
     .ucla-logo-text {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
         font-weight: 700;
         margin-left: 1rem;
     }
     
     .ucla-subtitle {
         color: var(--ucla-light-blue);
-        font-size: 1rem;
+        font-size: 0.9rem;
         font-weight: 300;
-        margin-top: 0.5rem;
+        margin-top: 0.3rem;
     }
     
     /* UCLA Search Section */
     .ucla-search-section {
         background: var(--ucla-white);
         border: 2px solid var(--ucla-light-blue);
-        border-radius: 8px;
-        padding: 2rem;
-        margin-bottom: 2rem;
-        box-shadow: 0 4px 12px rgba(39, 116, 174, 0.1);
+        border-radius: 6px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 2px 8px rgba(39, 116, 174, 0.1);
     }
     
     .ucla-search-title {
         color: var(--ucla-blue);
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         font-weight: 600;
-        margin-bottom: 1rem;
+        margin-bottom: 0.8rem;
     }
     
     /* UCLA Result Cards */
     .ucla-result-card {
         background: var(--ucla-white);
         border: 1px solid #E0E0E0;
-        border-radius: 6px;
-        padding: 1.5rem;
-        margin: 1rem 0;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        border-radius: 4px;
+        padding: 1rem;
+        margin: 0.5rem 0;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         transition: all 0.2s ease;
     }
     
     .ucla-result-card:hover {
         border-color: var(--ucla-blue);
-        box-shadow: 0 4px 12px rgba(39, 116, 174, 0.15);
+        box-shadow: 0 2px 6px rgba(39, 116, 174, 0.15);
     }
     
     .ucla-category-badge {
         background: var(--ucla-blue);
         color: white;
-        padding: 0.3rem 0.8rem;
-        border-radius: 4px;
-        font-size: 0.8rem;
+        padding: 0.2rem 0.6rem;
+        border-radius: 3px;
+        font-size: 0.7rem;
         font-weight: 600;
         display: inline-block;
-        margin-bottom: 1rem;
+        margin-bottom: 0.5rem;
     }
     
     .ucla-question-title {
         color: var(--ucla-dark-blue);
-        font-size: 1.1rem;
+        font-size: 1rem;
         font-weight: 600;
-        margin-bottom: 0.8rem;
-        line-height: 1.4;
+        margin-bottom: 0.5rem;
+        line-height: 1.3;
     }
     
     .ucla-answer-text {
         color: var(--ucla-gray);
-        line-height: 1.6;
+        line-height: 1.4;
         margin: 0;
+        font-size: 0.9rem;
     }
     
     .ucla-relevance-score {
         background: var(--ucla-light-gray);
         color: var(--ucla-gray);
-        padding: 0.2rem 0.6rem;
-        border-radius: 4px;
-        font-size: 0.8rem;
+        padding: 0.2rem 0.5rem;
+        border-radius: 3px;
+        font-size: 0.7rem;
         font-weight: 500;
     }
     
@@ -144,32 +145,33 @@ st.markdown("""
     .ucla-sidebar-section {
         background: var(--ucla-white);
         border: 1px solid #E0E0E0;
-        border-radius: 6px;
-        padding: 1.5rem;
-        margin-bottom: 1rem;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        border-radius: 4px;
+        padding: 1rem;
+        margin-bottom: 0.8rem;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
     
     .ucla-sidebar-title {
         color: var(--ucla-blue);
-        font-size: 1.2rem;
+        font-size: 1rem;
         font-weight: 600;
-        margin-bottom: 1rem;
-        border-bottom: 2px solid var(--ucla-gold);
-        padding-bottom: 0.5rem;
+        margin-bottom: 0.8rem;
+        border-bottom: 1px solid var(--ucla-gold);
+        padding-bottom: 0.3rem;
     }
     
     .ucla-quick-btn {
         background: var(--ucla-blue);
         color: white;
         border: none;
-        padding: 0.8rem 1rem;
-        border-radius: 4px;
+        padding: 0.6rem 0.8rem;
+        border-radius: 3px;
         font-weight: 500;
-        margin: 0.2rem 0;
+        margin: 0.1rem 0;
         width: 100%;
         transition: all 0.2s ease;
         cursor: pointer;
+        font-size: 0.85rem;
     }
     
     .ucla-quick-btn:hover {
@@ -181,7 +183,7 @@ st.markdown("""
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0.6rem 0;
+        padding: 0.4rem 0;
         border-bottom: 1px solid #E0E0E0;
     }
     
@@ -192,29 +194,31 @@ st.markdown("""
     .ucla-stat-label {
         font-weight: 500;
         color: var(--ucla-gray);
+        font-size: 0.85rem;
     }
     
     .ucla-stat-value {
         font-weight: 600;
         color: var(--ucla-blue);
         background: var(--ucla-light-gray);
-        padding: 0.3rem 0.8rem;
-        border-radius: 4px;
+        padding: 0.2rem 0.6rem;
+        border-radius: 3px;
+        font-size: 0.8rem;
     }
     
     /* UCLA Tips Section */
     .ucla-tips-section {
         background: var(--ucla-light-gray);
-        border-left: 4px solid var(--ucla-gold);
-        padding: 1.5rem;
-        border-radius: 4px;
+        border-left: 3px solid var(--ucla-gold);
+        padding: 1rem;
+        border-radius: 3px;
     }
     
     .ucla-tips-title {
         color: var(--ucla-blue);
-        font-size: 1.2rem;
+        font-size: 1rem;
         font-weight: 600;
-        margin-bottom: 1rem;
+        margin-bottom: 0.8rem;
     }
     
     .ucla-tips-list {
@@ -224,15 +228,16 @@ st.markdown("""
     }
     
     .ucla-tips-list li {
-        padding: 0.3rem 0;
+        padding: 0.2rem 0;
         color: var(--ucla-gray);
+        font-size: 0.8rem;
     }
     
     .ucla-tips-list li:before {
         content: "•";
         color: var(--ucla-blue);
         font-weight: bold;
-        margin-right: 0.5rem;
+        margin-right: 0.4rem;
     }
     
     /* UCLA Footer */
@@ -240,9 +245,10 @@ st.markdown("""
         background: var(--ucla-dark-blue);
         color: white;
         text-align: center;
-        padding: 1.5rem;
-        margin: 2rem -1rem -1rem -1rem;
-        border-radius: 6px 6px 0 0;
+        padding: 1rem;
+        margin: 1.5rem -1rem -1rem -1rem;
+        border-radius: 4px 4px 0 0;
+        font-size: 0.8rem;
     }
     
     .ucla-footer a {
@@ -259,25 +265,25 @@ st.markdown("""
     .ucla-category-section {
         background: var(--ucla-white);
         border: 1px solid #E0E0E0;
-        border-radius: 6px;
-        padding: 1.5rem;
-        margin-top: 2rem;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        border-radius: 4px;
+        padding: 1rem;
+        margin-top: 1.5rem;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
     
     .ucla-category-title {
         color: var(--ucla-blue);
-        font-size: 1.3rem;
+        font-size: 1.1rem;
         font-weight: 600;
-        margin-bottom: 1rem;
-        border-bottom: 2px solid var(--ucla-gold);
-        padding-bottom: 0.5rem;
+        margin-bottom: 0.8rem;
+        border-bottom: 1px solid var(--ucla-gold);
+        padding-bottom: 0.3rem;
     }
     
     /* Responsive Design */
     @media (max-width: 768px) {
         .ucla-logo-text {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
         }
     }
 </style>
@@ -364,8 +370,8 @@ st.markdown("""
             </div>
         </div>
         <div style="color: white; text-align: right;">
-            <div style="font-size: 1.2rem; font-weight: 600;">Knowledge Base</div>
-            <div style="font-size: 0.9rem; opacity: 0.8;">Resource Center</div>
+            <div style="font-size: 1rem; font-weight: 600;">Knowledge Base</div>
+            <div style="font-size: 0.8rem; opacity: 0.8;">Resource Center</div>
         </div>
     </div>
 </div>
@@ -375,8 +381,8 @@ st.markdown("""
 # Sidebar with organized sections
 # ----------------------------
 with st.sidebar:
-    st.markdown('<div class="ucla-sidebar-section">', unsafe_allow_html=True)
-    st.markdown('<div class="ucla-sidebar-title">Quick Access</div>', unsafe_allow_html=True)
+    # Quick Access Section (no box)
+    st.markdown("**Quick Access**")
     
     if st.button("Emergency Procedures", use_container_width=True, key="emergency"):
         st.session_state.quick_search = "emergency procedures"
@@ -406,7 +412,7 @@ with st.sidebar:
         st.session_state.quick_search = "SET survey response rates"
         st.rerun()
     
-    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown("---")
     
     # Statistics Section
     st.markdown('<div class="ucla-sidebar-section">', unsafe_allow_html=True)
@@ -474,7 +480,7 @@ if search_button and query.strip():
         for result in results:
             st.markdown(f'''
             <div class="ucla-result-card">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
                     <span class="ucla-category-badge">{result["category"]}</span>
                     <span class="ucla-relevance-score">Relevance: {result["relevance_score"]:.2f}</span>
                 </div>
