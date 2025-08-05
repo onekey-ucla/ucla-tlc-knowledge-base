@@ -68,10 +68,10 @@ st.markdown("""
         padding: 0 2rem;
     }
     
-    /* Card Layout */
+    /* Card Layout - 2x3 Grid */
     .card-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
         margin-bottom: 2rem;
     }
@@ -297,11 +297,6 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ----------------------------
-# Main Container
-# ----------------------------
-st.markdown('<div class="main-container">', unsafe_allow_html=True)
-
-# ----------------------------
 # Search Section
 # ----------------------------
 st.markdown('<div class="search-section">', unsafe_allow_html=True)
@@ -341,7 +336,7 @@ if search_button and query.strip():
 st.markdown('</div>', unsafe_allow_html=True)
 
 # ----------------------------
-# 3x2 Card Layout
+# 2x3 Card Layout
 # ----------------------------
 st.markdown('<div class="card-grid">', unsafe_allow_html=True)
 
@@ -451,8 +446,6 @@ st.markdown('''
     </div>
 </div>
 ''', unsafe_allow_html=True)
-
-st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('</div>', unsafe_allow_html=True)
 
