@@ -76,24 +76,28 @@ index, corpus, model = load_data()
 def categorize_qa(corpus):
     categories = defaultdict(list)
     for item in corpus:
-        # Simple categorization based on keywords
-        question_lower = item["question"].lower()
-        if any(word in question_lower for word in ["emergency", "safety", "crisis", "threat", "evacuation"]):
-            category = "Emergency & Safety"
-        elif any(word in question_lower for word in ["ferpa", "legal", "compliance", "privacy", "title ix"]):
-            category = "Legal & Compliance"
-        elif any(word in question_lower for word in ["grant", "funding", "innovation", "educational"]):
-            category = "Grants & Funding"
-        elif any(word in question_lower for word in ["student", "mental health", "counseling", "wellbeing"]):
-            category = "Student Support"
-        elif any(word in question_lower for word in ["accessibility", "digital", "wcag", "inclusive"]):
-            category = "Accessibility & Inclusion"
-        elif any(word in question_lower for word in ["feedback", "survey", "evaluation", "reflection"]):
-            category = "Teaching Improvement"
-        elif any(word in question_lower for word in ["syllabus", "course", "teaching", "classroom"]):
-            category = "Teaching Resources"
+        # Use pre-defined category if available, otherwise fall back to keyword matching
+        if "category" in item and item["category"]:
+            category = item["category"]
         else:
-            category = "General"
+            # Fallback categorization based on keywords
+            question_lower = item["question"].lower()
+            if any(word in question_lower for word in ["emergency", "safety", "crisis", "threat", "evacuation"]):
+                category = "Emergency & Safety"
+            elif any(word in question_lower for word in ["ferpa", "legal", "compliance", "privacy", "title ix"]):
+                category = "Legal & Compliance"
+            elif any(word in question_lower for word in ["grant", "funding", "innovation", "educational"]):
+                category = "Grants & Funding"
+            elif any(word in question_lower for word in ["student", "mental health", "counseling", "wellbeing"]):
+                category = "Student Support"
+            elif any(word in question_lower for word in ["accessibility", "digital", "wcag", "inclusive"]):
+                category = "Accessibility & Inclusion"
+            elif any(word in question_lower for word in ["feedback", "survey", "evaluation", "reflection"]):
+                category = "Teaching Improvement"
+            elif any(word in question_lower for word in ["syllabus", "course", "teaching", "classroom"]):
+                category = "Teaching Resources"
+            else:
+                category = "General"
         
         item["category"] = category
         categories[category].append(item)
