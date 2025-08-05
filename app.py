@@ -61,13 +61,6 @@ st.markdown("""
         font-weight: 300;
     }
     
-    /* Main Container */
-    .main-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 2rem;
-    }
-    
     /* Card Layout - 2x3 Grid */
     .card-grid {
         display: grid;
