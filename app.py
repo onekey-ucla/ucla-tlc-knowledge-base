@@ -335,21 +335,48 @@ if not st.session_state.show_results:
 
     with col1:
         st.markdown('<div class="subsection-header">Teaching & Learning</div>', unsafe_allow_html=True)
-        st.markdown("• Teaching Resources")
-        st.markdown("• Teaching Strategies")
-        st.markdown("• Assessment & Evaluation")
+        if st.button("Teaching Resources", key="teaching_resources", use_container_width=True):
+            st.session_state.search_query = "teaching resources syllabus"
+            st.session_state.show_results = True
+            st.rerun()
+        if st.button("Teaching Strategies", key="teaching_strategies", use_container_width=True):
+            st.session_state.search_query = "teaching strategies classroom"
+            st.session_state.show_results = True
+            st.rerun()
+        if st.button("Assessment & Evaluation", key="assessment", use_container_width=True):
+            st.session_state.search_query = "assessment evaluation feedback"
+            st.session_state.show_results = True
+            st.rerun()
 
     with col2:
         st.markdown('<div class="subsection-header">Student Support</div>', unsafe_allow_html=True)
-        st.markdown("• Student Mental Health")
-        st.markdown("• Accessibility & Inclusion")
-        st.markdown("• Emergency & Safety")
+        if st.button("Student Mental Health", key="mental_health", use_container_width=True):
+            st.session_state.search_query = "student mental health counseling"
+            st.session_state.show_results = True
+            st.rerun()
+        if st.button("Accessibility & Inclusion", key="accessibility", use_container_width=True):
+            st.session_state.search_query = "accessibility inclusion digital"
+            st.session_state.show_results = True
+            st.rerun()
+        if st.button("Emergency & Safety", key="emergency_safety", use_container_width=True):
+            st.session_state.search_query = "emergency safety procedures"
+            st.session_state.show_results = True
+            st.rerun()
 
     with col3:
         st.markdown('<div class="subsection-header">Administrative</div>', unsafe_allow_html=True)
-        st.markdown("• Legal & Compliance")
-        st.markdown("• Grants & Funding")
-        st.markdown("• SET Surveys")
+        if st.button("Legal & Compliance", key="legal", use_container_width=True):
+            st.session_state.search_query = "legal compliance FERPA"
+            st.session_state.show_results = True
+            st.rerun()
+        if st.button("Grants & Funding", key="grants_funding", use_container_width=True):
+            st.session_state.search_query = "grants funding innovation"
+            st.session_state.show_results = True
+            st.rerun()
+        if st.button("SET Surveys", key="set_surveys", use_container_width=True):
+            st.session_state.search_query = "SET survey interpretation"
+            st.session_state.show_results = True
+            st.rerun()
 
     # ----------------------------
     # SECTION 4: Popular Topics
@@ -360,19 +387,51 @@ if not st.session_state.show_results:
 
     with col1:
         st.markdown("**SET Survey Interpretation**")
-        st.markdown("*Understanding and using SET results effectively*")
+        st.markdown("""
+        **Understanding SET Results:**
+        • Overall scores provide general teaching effectiveness
+        • Compare scores across similar courses
+        • Focus on written comments for specific feedback
+        • Use results to identify areas for improvement
+        • Consider response rates and sample size
+        • Look for patterns across multiple quarters
+        """)
 
     with col2:
         st.markdown("**FERPA Compliance**")
-        st.markdown("*Student privacy and data protection guidelines*")
+        st.markdown("""
+        **Student Privacy Guidelines:**
+        • Never share student grades or personal info
+        • Use secure methods for grade communication
+        • Obtain written consent before sharing records
+        • Maintain confidentiality in all communications
+        • Understand directory vs. non-directory information
+        • Report violations to UCLA Registrar immediately
+        """)
 
     with col3:
         st.markdown("**Emergency Procedures**")
-        st.markdown("*Crisis response and safety protocols*")
+        st.markdown("""
+        **Crisis Response Protocols:**
+        • Medical emergencies: Call 911, then UCLA Police
+        • Active shooter: Run, Hide, Fight protocol
+        • Fire alarms: Evacuate immediately
+        • Earthquake: Drop, Cover, Hold On
+        • Mental health crisis: Contact CAPS (310-825-0768)
+        • Report incidents to department chair
+        """)
 
     with col4:
         st.markdown("**Teaching Resources**")
-        st.markdown("*Syllabus design and classroom strategies*")
+        st.markdown("""
+        **Syllabus & Classroom Strategies:**
+        • Include learning objectives and assessment criteria
+        • Establish clear communication policies
+        • Use inclusive teaching practices
+        • Provide regular feedback opportunities
+        • Incorporate active learning techniques
+        • Maintain accessible course materials
+        """)
 
     # ----------------------------
     # SECTION 5: Search Tips
