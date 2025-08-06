@@ -224,14 +224,14 @@ if 'search_query' not in st.session_state:
     st.session_state.search_query = ""
 
 # Check URL parameters for navigation
-params = st.experimental_get_query_params()
+params = st.query_params
 if 'page' in params:
-    if params['page'][0] == 'main':
+    if params['page'] == 'main':
         st.session_state.show_results = False
         st.session_state.search_query = ""
-    elif params['page'][0] == 'search' and 'q' in params:
+    elif params['page'] == 'search' and 'q' in params:
         st.session_state.show_results = True
-        st.session_state.search_query = params['q'][0]
+        st.session_state.search_query = params['q']
 
 # ----------------------------
 # UCLA Header
@@ -255,7 +255,7 @@ with col1:
         st.session_state.show_results = False
         st.session_state.search_query = ""
         # Update URL for browser history
-        st.experimental_set_query_params(page="main")
+        st.query_params["page"] = "main"
         st.rerun()
 
 with col2:
@@ -281,7 +281,8 @@ if search_button and query.strip():
     st.session_state.show_results = True
     st.session_state.search_query = query
     # Update URL for browser history
-    st.experimental_set_query_params(page="search", q=query)
+    st.query_params["page"] = "search"
+    st.query_params["q"] = query
     st.rerun()
 
 if st.session_state.show_results and st.session_state.search_query:
@@ -320,28 +321,32 @@ if not st.session_state.show_results:
         if st.button("Emergency Procedures", key="emergency", use_container_width=True):
             st.session_state.search_query = "emergency procedures"
             st.session_state.show_results = True
-            st.experimental_set_query_params(page="search", q="emergency procedures")
+            st.query_params["page"] = "search"
+            st.query_params["q"] = "emergency procedures"
             st.rerun()
 
     with col2:
         if st.button("FERPA Guidelines", key="ferpa", use_container_width=True):
             st.session_state.search_query = "FERPA guidelines"
             st.session_state.show_results = True
-            st.experimental_set_query_params(page="search", q="FERPA guidelines")
+            st.query_params["page"] = "search"
+            st.query_params["q"] = "FERPA guidelines"
             st.rerun()
 
     with col3:
         if st.button("SET Surveys", key="set", use_container_width=True):
             st.session_state.search_query = "SET survey interpretation"
             st.session_state.show_results = True
-            st.experimental_set_query_params(page="search", q="SET survey interpretation")
+            st.query_params["page"] = "search"
+            st.query_params["q"] = "SET survey interpretation"
             st.rerun()
 
     with col4:
         if st.button("Grant Opportunities", key="grants", use_container_width=True):
             st.session_state.search_query = "educational innovation grants"
             st.session_state.show_results = True
-            st.experimental_set_query_params(page="search", q="educational innovation grants")
+            st.query_params["page"] = "search"
+            st.query_params["q"] = "educational innovation grants"
             st.rerun()
 
     # ----------------------------
@@ -356,17 +361,20 @@ if not st.session_state.show_results:
         if st.button("Teaching Resources", key="teaching_resources", use_container_width=True):
             st.session_state.search_query = "teaching resources syllabus"
             st.session_state.show_results = True
-            st.experimental_set_query_params(page="search", q="teaching resources syllabus")
+            st.query_params["page"] = "search"
+            st.query_params["q"] = "teaching resources syllabus"
             st.rerun()
         if st.button("Teaching Strategies", key="teaching_strategies", use_container_width=True):
             st.session_state.search_query = "teaching strategies classroom"
             st.session_state.show_results = True
-            st.experimental_set_query_params(page="search", q="teaching strategies classroom")
+            st.query_params["page"] = "search"
+            st.query_params["q"] = "teaching strategies classroom"
             st.rerun()
         if st.button("Assessment & Evaluation", key="assessment", use_container_width=True):
             st.session_state.search_query = "assessment evaluation feedback"
             st.session_state.show_results = True
-            st.experimental_set_query_params(page="search", q="assessment evaluation feedback")
+            st.query_params["page"] = "search"
+            st.query_params["q"] = "assessment evaluation feedback"
             st.rerun()
 
     with col2:
@@ -374,17 +382,20 @@ if not st.session_state.show_results:
         if st.button("Student Mental Health", key="mental_health", use_container_width=True):
             st.session_state.search_query = "student mental health counseling"
             st.session_state.show_results = True
-            st.experimental_set_query_params(page="search", q="student mental health counseling")
+            st.query_params["page"] = "search"
+            st.query_params["q"] = "student mental health counseling"
             st.rerun()
         if st.button("Accessibility & Inclusion", key="accessibility", use_container_width=True):
             st.session_state.search_query = "accessibility inclusion digital"
             st.session_state.show_results = True
-            st.experimental_set_query_params(page="search", q="accessibility inclusion digital")
+            st.query_params["page"] = "search"
+            st.query_params["q"] = "accessibility inclusion digital"
             st.rerun()
         if st.button("Emergency & Safety", key="emergency_safety", use_container_width=True):
             st.session_state.search_query = "emergency safety procedures"
             st.session_state.show_results = True
-            st.experimental_set_query_params(page="search", q="emergency safety procedures")
+            st.query_params["page"] = "search"
+            st.query_params["q"] = "emergency safety procedures"
             st.rerun()
 
     with col3:
@@ -392,17 +403,20 @@ if not st.session_state.show_results:
         if st.button("Legal & Compliance", key="legal", use_container_width=True):
             st.session_state.search_query = "legal compliance FERPA"
             st.session_state.show_results = True
-            st.experimental_set_query_params(page="search", q="legal compliance FERPA")
+            st.query_params["page"] = "search"
+            st.query_params["q"] = "legal compliance FERPA"
             st.rerun()
         if st.button("Grants & Funding", key="grants_funding", use_container_width=True):
             st.session_state.search_query = "grants funding innovation"
             st.session_state.show_results = True
-            st.experimental_set_query_params(page="search", q="grants funding innovation")
+            st.query_params["page"] = "search"
+            st.query_params["q"] = "grants funding innovation"
             st.rerun()
         if st.button("SET Surveys", key="set_surveys", use_container_width=True):
             st.session_state.search_query = "SET survey interpretation"
             st.session_state.show_results = True
-            st.experimental_set_query_params(page="search", q="SET survey interpretation")
+            st.query_params["page"] = "search"
+            st.query_params["q"] = "SET survey interpretation"
             st.rerun()
 
     # ----------------------------
