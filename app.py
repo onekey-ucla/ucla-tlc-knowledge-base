@@ -145,6 +145,34 @@ st.markdown("""
         text-decoration: underline;
     }
 </style>
+
+<script>
+// Browser history management
+window.addEventListener('load', function() {
+    // Add initial state to browser history
+    if (window.history.state === null) {
+        window.history.replaceState({page: 'main'}, 'UCLA TLC Knowledge Base', window.location.pathname);
+    }
+    
+    // Listen for popstate events (back/forward button)
+    window.addEventListener('popstate', function(event) {
+        if (event.state && event.state.page === 'main') {
+            // Trigger a page reload to show main page
+            window.location.reload();
+        }
+    });
+});
+
+// Function to update browser history when going to search results
+function updateHistoryForSearch() {
+    window.history.pushState({page: 'search'}, 'Search Results - UCLA TLC', window.location.pathname);
+}
+
+// Function to update browser history when returning to main
+function updateHistoryForMain() {
+    window.history.pushState({page: 'main'}, 'UCLA TLC Knowledge Base', window.location.pathname);
+}
+</script>
 """, unsafe_allow_html=True)
 
 # ----------------------------
@@ -244,6 +272,12 @@ with col1:
     if st.button("🏠 Home", use_container_width=True):
         st.session_state.show_results = False
         st.session_state.search_query = ""
+        # Update browser history for main page
+        st.markdown("""
+        <script>
+            updateHistoryForMain();
+        </script>
+        """, unsafe_allow_html=True)
         st.rerun()
 
 with col2:
@@ -268,6 +302,12 @@ search_button = st.button("Search", use_container_width=True)
 if search_button and query.strip():
     st.session_state.show_results = True
     st.session_state.search_query = query
+    # Update browser history for search
+    st.markdown("""
+    <script>
+        updateHistoryForSearch();
+    </script>
+    """, unsafe_allow_html=True)
     st.rerun()
 
 if st.session_state.show_results and st.session_state.search_query:
