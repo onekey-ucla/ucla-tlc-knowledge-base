@@ -5,7 +5,7 @@ import json
 from collections import defaultdict
 import numpy as np
 
-# Updated: 2025-08-05 - Enhanced corpus with SET survey content
+# Updated: 2025-08-05 - Enhanced corpus with SET survey content - USING NATIVE STREAMLIT
 
 # ----------------------------
 # Streamlit Config
@@ -61,61 +61,6 @@ st.markdown("""
         font-weight: 300;
     }
     
-    /* Card Layout - 2x3 Grid */
-    .card-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-        margin-bottom: 2rem;
-    }
-    
-    .ucla-card {
-        background: var(--ucla-white);
-        border: 2px solid var(--ucla-blue);
-        border-radius: 8px;
-        padding: 1.5rem;
-        box-shadow: 0 4px 12px rgba(39, 116, 174, 0.15);
-        transition: all 0.3s ease;
-    }
-    
-    .ucla-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(39, 116, 174, 0.25);
-    }
-    
-    .card-title {
-        color: var(--ucla-blue);
-        font-size: 1.2rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-        border-bottom: 2px solid var(--ucla-gold);
-        padding-bottom: 0.5rem;
-    }
-    
-    .card-content {
-        color: #333;
-        font-size: 0.9rem;
-        line-height: 1.5;
-    }
-    
-    /* Search Section */
-    .search-section {
-        background: var(--ucla-white);
-        border: 2px solid var(--ucla-blue);
-        border-radius: 8px;
-        padding: 2rem;
-        margin-bottom: 2rem;
-        box-shadow: 0 4px 12px rgba(39, 116, 174, 0.15);
-    }
-    
-    .search-title {
-        color: var(--ucla-blue);
-        font-size: 1.5rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-        text-align: center;
-    }
-    
     /* UCLA Gold Search Button */
     .stButton > button {
         background-color: var(--ucla-gold) !important;
@@ -163,19 +108,6 @@ st.markdown("""
         font-size: 0.9rem;
     }
     
-    /* Consistent Font Sizes */
-    .category-item {
-        font-size: 0.9rem;
-        margin: 0.3rem 0;
-        color: #333;
-    }
-    
-    .tips-item {
-        font-size: 0.9rem;
-        margin: 0.3rem 0;
-        color: #333;
-    }
-    
     /* UCLA Footer */
     .ucla-footer {
         background: var(--ucla-blue);
@@ -194,17 +126,6 @@ st.markdown("""
     
     .ucla-footer a:hover {
         text-decoration: underline;
-    }
-    
-    /* Responsive Design */
-    @media (max-width: 768px) {
-        .card-grid {
-            grid-template-columns: 1fr;
-        }
-        
-        .ucla-header-title {
-            font-size: 1.5rem;
-        }
     }
 </style>
 """, unsafe_allow_html=True)
@@ -292,8 +213,7 @@ st.markdown("""
 # ----------------------------
 # Search Section
 # ----------------------------
-st.markdown('<div class="search-section">', unsafe_allow_html=True)
-st.markdown('<div class="search-title">Search Knowledge Base</div>', unsafe_allow_html=True)
+st.markdown("### Search Knowledge Base")
 
 # Search input
 query = st.text_input(
@@ -326,125 +246,70 @@ if search_button and query.strip():
     else:
         st.warning("No relevant results found. Try rephrasing your question or browse by category.")
 
-st.markdown('</div>', unsafe_allow_html=True)
-
 # ----------------------------
-# 2x3 Card Layout
+# 2x3 Layout using Streamlit Columns
 # ----------------------------
-st.markdown('<div class="card-grid">', unsafe_allow_html=True)
+st.markdown("---")
 
-# Card 1: Quick Access
-st.markdown('''
-<div class="ucla-card">
-    <div class="card-title">Quick Access</div>
-    <div class="card-content">
-        <div style="margin-bottom: 0.5rem;">
-            <button onclick="window.location.href='?quick_search=emergency+procedures'" style="background: var(--ucla-blue); color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; margin: 0.2rem; font-size: 0.8rem; cursor: pointer;">Emergency Procedures</button>
-        </div>
-        <div style="margin-bottom: 0.5rem;">
-            <button onclick="window.location.href='?quick_search=FERPA+guidelines'" style="background: var(--ucla-blue); color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; margin: 0.2rem; font-size: 0.8rem; cursor: pointer;">FERPA Guidelines</button>
-        </div>
-        <div style="margin-bottom: 0.5rem;">
-            <button onclick="window.location.href='?quick_search=SET+survey+interpretation'" style="background: var(--ucla-blue); color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; margin: 0.2rem; font-size: 0.8rem; cursor: pointer;">SET Surveys</button>
-        </div>
-        <div style="margin-bottom: 0.5rem;">
-            <button onclick="window.location.href='?quick_search=educational+innovation+grants'" style="background: var(--ucla-blue); color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; margin: 0.2rem; font-size: 0.8rem; cursor: pointer;">Grant Opportunities</button>
-        </div>
-    </div>
-</div>
-''', unsafe_allow_html=True)
+# Row 1
+col1, col2 = st.columns(2)
 
-# Card 2: Browse by Category
-st.markdown('''
-<div class="ucla-card">
-    <div class="card-title">Browse by Category</div>
-    <div class="card-content">
-        <div class="category-item">• Emergency & Safety: 4 items</div>
-        <div class="category-item">• Legal & Compliance: 7 items</div>
-        <div class="category-item">• Student Support: 5 items</div>
-        <div class="category-item">• Teaching Resources: 9 items</div>
-        <div class="category-item">• Assessment: 35 items</div>
-        <div class="category-item">• Teaching Strategies: 5 items</div>
-    </div>
-</div>
-''', unsafe_allow_html=True)
+with col1:
+    st.markdown("**Quick Access**")
+    st.button("Emergency Procedures", key="emergency", use_container_width=True)
+    st.button("FERPA Guidelines", key="ferpa", use_container_width=True)
+    st.button("SET Surveys", key="set", use_container_width=True)
 
-# Card 3: Knowledge Base Stats
-total_qa = len(corpus)
-categories_count = len(categorized_corpus)
+with col2:
+    st.markdown("**Browse by Category**")
+    st.markdown("• Emergency & Safety: 4 items")
+    st.markdown("• Legal & Compliance: 7 items")
+    st.markdown("• Student Support: 5 items")
+    st.markdown("• Teaching Resources: 9 items")
+    st.markdown("• Assessment: 35 items")
+    st.markdown("• Teaching Strategies: 5 items")
 
-st.markdown(f'''
-<div class="ucla-card">
-    <div class="card-title">Knowledge Base Stats</div>
-    <div class="card-content">
-        <div style="margin-bottom: 1rem;">
-            <strong>Total Q&A Pairs:</strong> {total_qa}
-        </div>
-        <div style="margin-bottom: 1rem;">
-            <strong>Categories:</strong> {categories_count}
-        </div>
-        <div style="font-size: 0.8rem; color: #666;">
-            Most comprehensive UCLA teaching resource database
-        </div>
-    </div>
-</div>
-''', unsafe_allow_html=True)
+# Row 2
+col3, col4 = st.columns(2)
 
-# Card 4: Search Tips
-st.markdown('''
-<div class="ucla-card">
-    <div class="card-title">Search Tips</div>
-    <div class="card-content">
-        <div class="tips-item">• Use specific keywords for better results</div>
-        <div class="tips-item">• Try asking about SET surveys or teaching resources</div>
-        <div class="tips-item">• Browse by category to explore related content</div>
-        <div class="tips-item">• Results are ranked by relevance to your query</div>
-        <div class="tips-item">• Check quick access for urgent topics</div>
-    </div>
-</div>
-''', unsafe_allow_html=True)
+with col3:
+    total_qa = len(corpus)
+    categories_count = len(categorized_corpus)
+    st.markdown("**Knowledge Base Stats**")
+    st.metric("Total Q&A Pairs", total_qa)
+    st.metric("Categories", categories_count)
 
-# Card 5: Popular Topics
-st.markdown('''
-<div class="ucla-card">
-    <div class="card-title">Popular Topics</div>
-    <div class="card-content">
-        <div class="category-item">• SET Survey Interpretation</div>
-        <div class="category-item">• FERPA Compliance</div>
-        <div class="category-item">• Emergency Procedures</div>
-        <div class="category-item">• Student Mental Health</div>
-        <div class="category-item">• Teaching Resources</div>
-        <div class="category-item">• Grant Opportunities</div>
-    </div>
-</div>
-''', unsafe_allow_html=True)
+with col4:
+    st.markdown("**Search Tips**")
+    st.markdown("• Use specific keywords for better results")
+    st.markdown("• Try asking about SET surveys or teaching resources")
+    st.markdown("• Browse by category to explore related content")
+    st.markdown("• Results are ranked by relevance to your query")
+    st.markdown("• Check quick access for urgent topics")
 
-# Card 6: Contact & Support
-st.markdown('''
-<div class="ucla-card">
-    <div class="card-title">Contact & Support</div>
-    <div class="card-content">
-        <div style="margin-bottom: 0.5rem;">
-            <strong>Email:</strong> tlc@teaching.ucla.edu
-        </div>
-        <div style="margin-bottom: 0.5rem;">
-            <strong>Website:</strong> teaching.ucla.edu
-        </div>
-        <div style="margin-bottom: 0.5rem;">
-            <strong>Hours:</strong> Mon-Fri 9AM-5PM
-        </div>
-        <div style="font-size: 0.8rem; color: #666;">
-            Get personalized support for your teaching needs
-        </div>
-    </div>
-</div>
-''', unsafe_allow_html=True)
+# Row 3
+col5, col6 = st.columns(2)
 
-st.markdown('</div>', unsafe_allow_html=True)
+with col5:
+    st.markdown("**Popular Topics**")
+    st.markdown("• SET Survey Interpretation")
+    st.markdown("• FERPA Compliance")
+    st.markdown("• Emergency Procedures")
+    st.markdown("• Student Mental Health")
+    st.markdown("• Teaching Resources")
+    st.markdown("• Grant Opportunities")
+
+with col6:
+    st.markdown("**Contact & Support**")
+    st.markdown("**Email:** tlc@teaching.ucla.edu")
+    st.markdown("**Website:** teaching.ucla.edu")
+    st.markdown("**Hours:** Mon-Fri 9AM-5PM")
+    st.markdown("*Get personalized support for your teaching needs*")
 
 # ----------------------------
 # UCLA Footer
 # ----------------------------
+st.markdown("---")
 st.markdown("""
 <div class="ucla-footer">
     <strong>UCLA Teaching & Learning Center Knowledge Base</strong><br>
