@@ -5,7 +5,7 @@ import json
 from collections import defaultdict
 import numpy as np
 
-# Updated: 2025-08-05 - Enhanced corpus with SET survey content - USING NATIVE STREAMLIT
+# Updated: 2025-08-05 - Enhanced corpus with SET survey content - CLEAN OUTLINE
 
 # ----------------------------
 # Streamlit Config
@@ -106,6 +106,23 @@ st.markdown("""
         color: #333;
         line-height: 1.4;
         font-size: 0.9rem;
+    }
+    
+    /* Section Styling */
+    .section-header {
+        color: var(--ucla-blue);
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin: 2rem 0 1rem 0;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--ucla-gold);
+    }
+    
+    .subsection-header {
+        color: var(--ucla-blue);
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin: 1rem 0 0.5rem 0;
     }
     
     /* UCLA Footer */
@@ -211,9 +228,9 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ----------------------------
-# Search Section
+# SECTION 1: Search Knowledge Base
 # ----------------------------
-st.markdown("### Search Knowledge Base")
+st.markdown('<div class="section-header">🔍 Search Knowledge Base</div>', unsafe_allow_html=True)
 
 # Search input
 query = st.text_input(
@@ -247,21 +264,40 @@ if search_button and query.strip():
         st.warning("No relevant results found. Try rephrasing your question or browse by category.")
 
 # ----------------------------
-# 2x3 Layout using Streamlit Columns
+# SECTION 2: Quick Access
 # ----------------------------
-st.markdown("---")
+st.markdown('<div class="section-header">⚡ Quick Access</div>', unsafe_allow_html=True)
 
-# Row 1
+col1, col2, col3, col4 = st.columns(4)
+
+with col1:
+    st.button("Emergency Procedures", key="emergency", use_container_width=True)
+
+with col2:
+    st.button("FERPA Guidelines", key="ferpa", use_container_width=True)
+
+with col3:
+    st.button("SET Surveys", key="set", use_container_width=True)
+
+with col4:
+    st.button("Grant Opportunities", key="grants", use_container_width=True)
+
+# ----------------------------
+# SECTION 3: Knowledge Base Overview
+# ----------------------------
+st.markdown('<div class="section-header">📊 Knowledge Base Overview</div>', unsafe_allow_html=True)
+
 col1, col2 = st.columns(2)
 
 with col1:
-    st.markdown("**Quick Access**")
-    st.button("Emergency Procedures", key="emergency", use_container_width=True)
-    st.button("FERPA Guidelines", key="ferpa", use_container_width=True)
-    st.button("SET Surveys", key="set", use_container_width=True)
+    total_qa = len(corpus)
+    categories_count = len(categorized_corpus)
+    st.markdown('<div class="subsection-header">Statistics</div>', unsafe_allow_html=True)
+    st.metric("Total Q&A Pairs", total_qa)
+    st.metric("Categories", categories_count)
 
 with col2:
-    st.markdown("**Browse by Category**")
+    st.markdown('<div class="subsection-header">Category Breakdown</div>', unsafe_allow_html=True)
     st.markdown("• Emergency & Safety: 4 items")
     st.markdown("• Legal & Compliance: 7 items")
     st.markdown("• Student Support: 5 items")
@@ -269,42 +305,91 @@ with col2:
     st.markdown("• Assessment: 35 items")
     st.markdown("• Teaching Strategies: 5 items")
 
-# Row 2
-col3, col4 = st.columns(2)
+# ----------------------------
+# SECTION 4: Browse by Category
+# ----------------------------
+st.markdown('<div class="section-header">📂 Browse by Category</div>', unsafe_allow_html=True)
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.markdown('<div class="subsection-header">Teaching & Learning</div>', unsafe_allow_html=True)
+    st.markdown("• Teaching Resources")
+    st.markdown("• Teaching Strategies")
+    st.markdown("• Assessment & Evaluation")
+
+with col2:
+    st.markdown('<div class="subsection-header">Student Support</div>', unsafe_allow_html=True)
+    st.markdown("• Student Mental Health")
+    st.markdown("• Accessibility & Inclusion")
+    st.markdown("• Emergency & Safety")
 
 with col3:
-    total_qa = len(corpus)
-    categories_count = len(categorized_corpus)
-    st.markdown("**Knowledge Base Stats**")
-    st.metric("Total Q&A Pairs", total_qa)
-    st.metric("Categories", categories_count)
+    st.markdown('<div class="subsection-header">Administrative</div>', unsafe_allow_html=True)
+    st.markdown("• Legal & Compliance")
+    st.markdown("• Grants & Funding")
+    st.markdown("• SET Surveys")
+
+# ----------------------------
+# SECTION 5: Popular Topics
+# ----------------------------
+st.markdown('<div class="section-header">🔥 Popular Topics</div>', unsafe_allow_html=True)
+
+col1, col2, col3, col4 = st.columns(4)
+
+with col1:
+    st.markdown("**SET Survey Interpretation**")
+    st.markdown("*Understanding and using SET results effectively*")
+
+with col2:
+    st.markdown("**FERPA Compliance**")
+    st.markdown("*Student privacy and data protection guidelines*")
+
+with col3:
+    st.markdown("**Emergency Procedures**")
+    st.markdown("*Crisis response and safety protocols*")
 
 with col4:
-    st.markdown("**Search Tips**")
-    st.markdown("• Use specific keywords for better results")
-    st.markdown("• Try asking about SET surveys or teaching resources")
-    st.markdown("• Browse by category to explore related content")
-    st.markdown("• Results are ranked by relevance to your query")
+    st.markdown("**Teaching Resources**")
+    st.markdown("*Syllabus design and classroom strategies*")
+
+# ----------------------------
+# SECTION 6: Search Tips
+# ----------------------------
+st.markdown('<div class="section-header">💡 Search Tips</div>', unsafe_allow_html=True)
+
+col1, col2 = st.columns(2)
+
+with col1:
+    st.markdown("**For Better Results:**")
+    st.markdown("• Use specific keywords")
+    st.markdown("• Try asking about SET surveys")
+    st.markdown("• Include context in your question")
+
+with col2:
+    st.markdown("**Browse Effectively:**")
     st.markdown("• Check quick access for urgent topics")
+    st.markdown("• Browse by category to explore")
+    st.markdown("• Results are ranked by relevance")
 
-# Row 3
-col5, col6 = st.columns(2)
+# ----------------------------
+# SECTION 7: Contact & Support
+# ----------------------------
+st.markdown('<div class="section-header">📞 Contact & Support</div>', unsafe_allow_html=True)
 
-with col5:
-    st.markdown("**Popular Topics**")
-    st.markdown("• SET Survey Interpretation")
-    st.markdown("• FERPA Compliance")
-    st.markdown("• Emergency Procedures")
-    st.markdown("• Student Mental Health")
-    st.markdown("• Teaching Resources")
-    st.markdown("• Grant Opportunities")
+col1, col2, col3 = st.columns(3)
 
-with col6:
-    st.markdown("**Contact & Support**")
-    st.markdown("**Email:** tlc@teaching.ucla.edu")
-    st.markdown("**Website:** teaching.ucla.edu")
-    st.markdown("**Hours:** Mon-Fri 9AM-5PM")
-    st.markdown("*Get personalized support for your teaching needs*")
+with col1:
+    st.markdown("**Email:**")
+    st.markdown("tlc@teaching.ucla.edu")
+
+with col2:
+    st.markdown("**Website:**")
+    st.markdown("teaching.ucla.edu")
+
+with col3:
+    st.markdown("**Hours:**")
+    st.markdown("Mon-Fri 9AM-5PM")
 
 # ----------------------------
 # UCLA Footer
