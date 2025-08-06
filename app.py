@@ -327,26 +327,7 @@ if not st.session_state.show_results:
             st.rerun()
 
     # ----------------------------
-    # SECTION 3: Knowledge Base Overview
-    # ----------------------------
-    st.markdown('<div class="section-header">📊 Knowledge Base Overview</div>', unsafe_allow_html=True)
-
-    col1, col2 = st.columns(2)
-
-    with col1:
-        total_qa = len(corpus)
-        categories_count = len(categorized_corpus)
-        st.markdown('<div class="subsection-header">Statistics</div>', unsafe_allow_html=True)
-        st.metric("Total Q&A Pairs", total_qa)
-        st.metric("Categories", categories_count)
-
-    with col2:
-        st.markdown('<div class="subsection-header">Category Breakdown</div>', unsafe_allow_html=True)
-        for category, items in categorized_corpus.items():
-            st.markdown(f"• {category}: {len(items)} items")
-
-    # ----------------------------
-    # SECTION 4: Browse by Category
+    # SECTION 3: Browse by Category
     # ----------------------------
     st.markdown('<div class="section-header">📂 Browse by Category</div>', unsafe_allow_html=True)
 
@@ -371,7 +352,7 @@ if not st.session_state.show_results:
         st.markdown("• SET Surveys")
 
     # ----------------------------
-    # SECTION 5: Popular Topics
+    # SECTION 4: Popular Topics
     # ----------------------------
     st.markdown('<div class="section-header">🔥 Popular Topics</div>', unsafe_allow_html=True)
 
@@ -394,7 +375,7 @@ if not st.session_state.show_results:
         st.markdown("*Syllabus design and classroom strategies*")
 
     # ----------------------------
-    # SECTION 6: Search Tips
+    # SECTION 5: Search Tips
     # ----------------------------
     st.markdown('<div class="section-header">💡 Search Tips</div>', unsafe_allow_html=True)
 
@@ -413,7 +394,7 @@ if not st.session_state.show_results:
         st.markdown("• Results are ranked by relevance")
 
     # ----------------------------
-    # SECTION 7: Contact & Support
+    # SECTION 6: Contact & Support
     # ----------------------------
     st.markdown('<div class="section-header">📞 Contact & Support</div>', unsafe_allow_html=True)
 
