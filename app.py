@@ -424,13 +424,13 @@ if not st.session_state.show_results:
     with col4:
         st.markdown("**Teaching Resources**")
         st.markdown("""
-        **Syllabus & Classroom Strategies:**
-        • Include learning objectives and assessment criteria
-        • Establish clear communication policies
-        • Use inclusive teaching practices
-        • Provide regular feedback opportunities
-        • Incorporate active learning techniques
-        • Maintain accessible course materials
+        **Syllabus & Classroom Tools:**
+        • UCLA Canvas LMS integration guides
+        • Syllabus templates and best practices
+        • Active learning technique demonstrations
+        • Assessment rubric development tools
+        • Inclusive teaching resource library
+        • Classroom technology setup guides
         """)
 
     # ----------------------------
